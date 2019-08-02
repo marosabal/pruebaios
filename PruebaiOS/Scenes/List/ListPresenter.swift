@@ -19,15 +19,15 @@ class ListPresenter: ListPresentationLogic {
     weak var viewController: ListDisplayLogic?
 
     func parseResults(results: [Result]) -> [MovieInfo] {
-        return results.map{
+        return results.map {
             MovieInfo(
                 id: $0.id,
                 title: $0.title,
-                imageURL: "\(ApiKeys.imageUrl.rawValue)\($0.posterPath ?? "")"
+                imageURL: "\(ApiKeys.imageUrl200.rawValue)\($0.posterPath ?? "")"
             )
         }
     }
-    
+
     // MARK: - ListPresentationLogic
 
     func presentMovies(response: List.Movies.Response) {
@@ -57,5 +57,5 @@ class ListPresenter: ListPresentationLogic {
     func presentSelectedMovie() {
         viewController?.displaySelectedMovie()
     }
-    
+
 }

@@ -14,28 +14,18 @@ protocol ListWorkerProtocol {
 
 class ListWorker: ListWorkerProtocol {
 
-    let api: ServicesProtocol?
+    let api: MovieManagerProtocol?
 
-    init(_ api: ServicesProtocol = Services()) {
+    init(_ api: MovieManagerProtocol = MovieManager()) {
         self.api = api
     }
 
     func getMovieList(page: Int, handler: @escaping (DiscoveryResponse?, Error?) -> Void) {
 
-        let url = URL(string: ApiKeys.url.rawValue)!
-        let parameters: [String: String] = [
-            "api_key": ApiKeys.apiKey.rawValue,
-            "language": "en-US",
-            "sort_by": "popularity.desc",
-            "include_adult": "false",
-            "include_video": "false",
-            "page": "\(page)"
-        ]
-
-        api?.sendRequest(url, parameters: parameters) { data, error in
+        api?.getMovieList(page: page) { data, error in
             if let jsonData = data {
-                let discoveryResponse = try? JSONDecoder().decode(DiscoveryResponse.self, from: jsonData)
-                handler(discoveryResponse, error)
+                let response = try? JSONDecoder().decode(DiscoveryResponse.self, from: jsonData)
+                handler(response, error)
             } else {
                 handler(nil, error)
             }

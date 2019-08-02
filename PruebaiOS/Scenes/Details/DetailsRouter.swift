@@ -18,20 +18,9 @@ protocol DetailsDataPassing {
 class DetailsRouter: NSObject, DetailsRoutingLogic, DetailsDataPassing {
     weak var viewController: DetailsViewController?
     var dataStore: DetailsDataStore?
-    
+
     // MARK: - Routing
-    
+
     // MARK: - Navigation
-    
-    //func navigateToSomewhere(source: DetailsViewController, destination: SomewhereViewController)
-    //{
-    //  source.show(destination, sender: nil)
-    //}
-    
-    // MARK: - Passing data
-    
-    //func passDataToSomewhere(source: DetailsDataStore, destination: inout SomewhereDataStore)
-    //{
-    //  destination.name = source.name
-    //}
+
 }

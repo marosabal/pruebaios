@@ -18,21 +18,16 @@ protocol ListDisplayLogic: AnyObject {
 class ListViewController: UITableViewController, ListDisplayLogic {
     var interactor: ListBusinessLogic?
     var router: (NSObjectProtocol & ListRoutingLogic & ListDataPassing)?
-    
+
     // MARK: - Object lifecycle
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
-    }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         let viewController = self
         let interactor = ListInteractor()
@@ -45,27 +40,32 @@ class ListViewController: UITableViewController, ListDisplayLogic {
         router.viewController = viewController
         router.dataStore = interactor
     }
-    
+
     // MARK: - Outlets
-    
+
     // MARK: - Attributes
     var results: [List.MovieData] = []
-    
+
     // MARK: - View lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         interactor?.viewDidLoad()
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+
     // MARK: - Private
 
     func setupView() {
         title = "Movies"
         tableView.tableFooterView = UIView()
     }
-    
+
     // MARK: - ListDisplayLogic
 
     func displayResults(viewModel: List.Movies.ViewModel) {

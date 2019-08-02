@@ -28,30 +28,38 @@ struct DiscoveryResponse: Codable {
 
 // MARK: - Result
 struct Result: Codable {
-    let voteCount, id: Int
-    let video: Bool
-    let voteAverage: Double
+    let id: Int
     let title: String
-    let popularity: Double
     let posterPath: String?
-    let originalLanguage: String
     let originalTitle: String
-    let genreIDS: [Int]
     let backdropPath: String?
-    let adult: Bool
     let overview, releaseDate: String
 
+    // Not needed for now
+    //    let video: Bool
+    //    let voteCount: Int
+    //    let popularity: Double
+    //    let voteAverage: Double
+    //    let adult: Bool
+    //    let genreIDS: [Int]
+    //    let originalLanguage: String?
+
     enum CodingKeys: String, CodingKey {
-        case voteCount = "vote_count"
-        case id, video
-        case voteAverage = "vote_average"
-        case title, popularity
-        case posterPath = "poster_path"
-        case originalLanguage = "original_language"
+        case id
+        case title
         case originalTitle = "original_title"
-        case genreIDS = "genre_ids"
         case backdropPath = "backdrop_path"
-        case adult, overview
+        case posterPath = "poster_path"
+        case overview
         case releaseDate = "release_date"
+
+        // Not needed for now
+        //        case video
+        //        case voteAverage = "vote_average"
+        //        case voteCount = "vote_count"
+        //        case popularity
+        //        case originalLanguage = "original_language"
+        //        case genreIDS = "genre_ids"
+        //        case adult
     }
 }

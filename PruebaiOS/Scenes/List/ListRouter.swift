@@ -19,7 +19,7 @@ protocol ListDataPassing {
 class ListRouter: NSObject, ListRoutingLogic, ListDataPassing {
     weak var viewController: ListViewController?
     var dataStore: ListDataStore?
-    
+
     // MARK: - Routing
 
     func routeToMovieDetails() {
@@ -31,9 +31,9 @@ class ListRouter: NSObject, ListRoutingLogic, ListDataPassing {
         passDataToDetails(source: dataStore!, destination: &destinationDS)
         viewController?.navigationController?.pushViewController(destinationVC, animated: true)
     }
-    
+
     // MARK: - Passing data
-    
+
     func passDataToDetails(source: ListDataStore, destination: inout DetailsDataStore) {
       destination.selectedMovie = source.selectedMovie
     }
