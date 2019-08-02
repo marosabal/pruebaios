@@ -102,7 +102,9 @@ class MovieManager: MovieManagerProtocol {
                 let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
                 error == nil
                 else {
-                    handler(nil)
+                    DispatchQueue.main.async {
+                        handler(nil)
+                    }
                     return
             }
             DispatchQueue.main.async {
